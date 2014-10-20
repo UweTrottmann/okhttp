@@ -430,6 +430,7 @@ public final class DiskLruCache implements Closeable {
 
     redundantOpCount++;
     journalWriter.writeUtf8(READ).writeByte(' ').writeUtf8(key).writeByte('\n');
+    journalWriter.flush();
     if (journalRebuildRequired()) {
       executorService.execute(cleanupRunnable);
     }
